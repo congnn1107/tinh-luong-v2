@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+    <title>Registraion Form</title>
+</head>
+
+<body>
+    <form action="#" onkeyup="return event.key != 'Enter'" class="form">
+        <h1 class="text-center">Họ Tên</h1>
+        <!-- Progress bar -->
+        <div class="progressbar">
+            <div class="progress" id="progress"></div>
+            <div class="progress-step progress-step-active" data-title="Họ Tên"></div>
+            <div class="progress-step" data-title="Giờ Cơ Bản"></div>
+            <div class="progress-step" data-title="Giờ Làm Thêm"></div>
+            <div class="progress-step" data-title="Giờ Làm Đêm"></div>
+            <div class="progress-step" data-title="Giờ Đặc Biệt"></div>
+            <div class="progress-step" data-title="Lương Cơ Bản"></div>
+        </div>
+
+        <!-- Steps -->
+        <div class="form-step form-step-active">
+            <div class="input-group">
+                <input type="text" id="ten" />
+            </div>
+            <div class="">
+
+                <a href="#" class="btn btn-next width-50 ml-auto">Sau</a>
+            </div>
+        </div>
+        <div class="form-step">
+            <div class="input-group">
+                <input type="number" step="0.1" min="0" name="basic" id="coban" />
+            </div>
+            <div class="btns-group">
+                <a href="#" class="btn btn-prev">Trước</a>
+                <a href="#" class="btn btn-next">Sau</a>
+            </div>
+        </div>
+        <div class="form-step">
+            <div class="input-group">
+                <input type="number" step="0.1" min="0" name="overtime" id="lamthem" />
+            </div>
+            <div class="btns-group">
+                <a href="#" class="btn btn-prev">Trước</a>
+                <a href="#" class="btn btn-next">Sau</a>
+            </div>
+        </div>
+        <div class="form-step">
+            <div class="input-group">
+                <input type="number" step="0.1" min="0" name="overnight" id="lamdem" />
+            </div>
+            <div class="btns-group">
+                <a href="#" class="btn btn-prev">Trước</a>
+                <a href="#" class="btn btn-next">Sau</a>
+            </div>
+        </div>
+        <div class="form-step">
+            <div class="input-group">
+                <input type="number" step="0.1" min="0" name="special" id="dacbiet" />
+            </div>
+            <div class="btns-group">
+                <a href="#" class="btn btn-prev">Trước</a>
+                <a href="#" class="btn btn-next">Sau</a>
+            </div>
+        </div>
+        <div class="form-step">
+            <div class="input-group">
+                <input type="number" step="0.1" min="0" name="salary" id="luong" value="8920" />
+            </div>
+            <div class="btns-group">
+                <a href="#" class="btn btn-prev">Trước</a>
+                <input type="submit" onclick="event.preventDefault();calculate()" value="OK" class="btn" />
+            </div>
+        </div>
+    </form>
+
+    <div id="result">
+        <h3 class="text-center"></h3>
+        <hr>
+        <h4>Thông tin hệ số lương</h4>
+        <div class="line">
+            Lương Cơ Bản: <span id="coban"></span>%
+        </div>
+        <div class="line">
+            Hệ số làm thêm: <span id="lamthem"></span>%
+        </div>
+        <div class="line">
+            Hệ số làm đêm: <span id="lamdem"></span>%
+        </div>
+        <div class="line">
+            Hệ số làm đặc biệt: <span id="dacbiet"></span>%
+        </div>
+        <hr>
+        <h4>Thông tin hệ số thuế - bảo hiểm</h4>
+
+        <div class="line">
+            Bảo hiểm lao động: <span id="laodong"></span>%
+        </div>
+        <div class="line">
+            Bảo hiểm sức khỏe: <span id="suckhoe"></span>%
+        </div>
+        <div class="line">
+            Bảo hiểm tai nạn: <span id="tainan"></span>%
+        </div>
+        <div class="line">
+            Lương hưu quốc gia: <span id="huu"></span>%
+        </div>
+        <hr>
+        <h4>Kết quả lương </h4>
+        <div class="line">
+            Lương cơ bản: <span id="tiencoban"></span>
+        </div>
+        <div class="line">
+            Lương làm thêm: <span id="tienlamthem"></span>
+        </div>
+        <div class="line">
+            Lương làm đêm: <span id="tienlamdem"></span>
+        </div>
+        <div class="line">
+            Lương làm đặc biệt: <span id="tiendacbiet"></span>
+        </div>
+        <hr>
+        <h4>Số tiền trừ thuế - bảo hiểm</h4>
+        <div class="line">
+            Bảo hiểm lao động: <span id="thuelaodong"></span>
+        </div>
+        <div class="line">
+            Bảo hiểm sức khỏe: <span id="thuesuckhoe"></span>
+        </div>
+        <div class="line">
+            Bảo hiểm tai nạn: <span id="thuetainan"></span>
+        </div>
+        <div class="line">
+            Lương hưu quốc gia: <span id="thuehuu"></span>
+        </div>
+        <hr>
+        <h4>Tổng hợp lương</h4>
+        <div class="line">
+            Tổng lương: <span id="luonggros"></span>
+        </div>
+        <div class="line">
+            Tổng thuế: <span id="thue"></span>
+        </div>
+        <div class="line">
+            Lương thực nhận: <span id="luongnet"></span>
+        </div>
+        <div class="text-center">
+            <br>
+            <a href="index.html" class="btn">Nhập lại</a>
+        </div>
+    </div>
+</body>
+
+</html>
