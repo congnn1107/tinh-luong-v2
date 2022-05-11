@@ -64,8 +64,10 @@ const luongHuuQuocGia = 4.5;
 
 function calculate(event) {
   if(formStepsNum<5){
-    const progressActive = document.querySelectorAll(".form-step-active");
+    let progressActive = document.querySelectorAll(".form-step-active");
     progressActive[progressActive.length-1].querySelector('.btn-next').click();
+    progressActive = document.querySelectorAll(".form-step-active");
+    progressActive[progressActive.length-1].querySelector('input').focus();
     return;
   }
   let luongGross;
