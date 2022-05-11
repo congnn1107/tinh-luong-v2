@@ -62,7 +62,12 @@ const baoHiemSucKhoe = 3.335;
 const baoHiemTaiNan = 0.13;
 const luongHuuQuocGia = 4.5;
 
-function calculate() {
+function calculate(event) {
+  if(formStepsNum<5){
+    const progressActive = document.querySelectorAll(".form-step-active");
+    progressActive[progressActive.length-1].querySelector('.btn-next').click();
+    return;
+  }
   let luongGross;
   let luongNet;
   inputs.forEach(function (input, index) {
